@@ -1,4 +1,5 @@
 import { FiPlus } from 'react-icons/fi'
+import { currencyFormat } from '../../helpers/currencyFormat'
 import { Container } from './styles'
 
 interface SnacksProps {
@@ -13,7 +14,7 @@ export default function Snacks({ snacks }: SnacksProps) {
           <img src={snack.image} alt={snack.name} />
           <p>{snack.description}</p>
           <div>
-            <strong>{snack.price}</strong>
+            <strong>{currencyFormat(snack.price)}</strong>
             <button type='button'>
               <FiPlus />
             </button>
