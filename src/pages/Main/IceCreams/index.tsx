@@ -1,19 +1,11 @@
 import { Head } from '../../../components/Head'
 import Snacks from '../../../components/Snacks'
 import { SnackTitle } from '../../../components/SnackTitle'
-import { useEffect, useState } from 'react'
-import { getIceCreams } from '../../../services/api'
-import { SnackData } from './../../../interfaces/SnackData';
+import { useContext } from 'react'
+import { SnackContext } from '../../../App'
 
 export default function IceCreams() {
-  const [iceCreams, setIceCreams] = useState<SnackData[]>([])
-
-  useEffect(() => {
-    (async () => {
-      const IceCreamsRequest = await getIceCreams()
-      setIceCreams(IceCreamsRequest.data)
-    })()
-  }, [])
+  const { iceCreams } = useContext(SnackContext)
 
   return (
     <>
