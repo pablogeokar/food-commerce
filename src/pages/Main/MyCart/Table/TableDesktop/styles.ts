@@ -48,7 +48,6 @@ export const Container = styled.main`
           background: none;
           flex: 0;
           border: none;
-          cursor: pointer;
 
           display: flex;
           align-items: center;
@@ -95,6 +94,7 @@ export const Container = styled.main`
           background: none;
           border: none;
           width: 100%;
+          cursor: pointer;
 
           display: flex;
           align-items: center;

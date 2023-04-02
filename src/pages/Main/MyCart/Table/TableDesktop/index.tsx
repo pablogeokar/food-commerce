@@ -1,18 +1,23 @@
-import { Container } from './styles'
-import { useCart } from './../../../../../hooks/useCart'
+import { FaTrashAlt } from 'react-icons/fa'
+import { useCart } from '../../../../../hooks/useCart'
+
 import { currencyFormat } from '../../../../../helpers/currencyFormat'
-import plusImg from '../../../../../assets/circle-plus.svg'
+
 import minusImg from '../../../../../assets/circle-minus.svg'
+import plusImg from '../../../../../assets/circle-plus.svg'
+
+import { Container } from './styles'
 
 export function TableDesktop() {
-  const { cart } = useCart()
+  const { cart, removeSnackFromCart, snackCartIncrement, snackCartDecrement } = useCart()
+
   return (
     <Container>
       <table>
         <thead>
           <tr>
             <th></th>
-            <th>Lanches</th>
+            <th>Lanche</th>
             <th>Qtd</th>
             <th>Subtotal</th>
             <th></th>
@@ -30,11 +35,11 @@ export function TableDesktop() {
               </td>
               <td>
                 <div>
-                  <button type='button' onClick={() => console.log('decrementar snack', item)}>
+                  <button type='button' onClick={() => snackCartDecrement(item)}>
                     <img src={minusImg} alt='Remover quantidade' />
                   </button>
                   <span>{`${item.quantity}`.padStart(2, '0')}</span>
-                  <button type='button' onClick={() => console.log('incrementar snack', item)}>
+                  <button type='button' onClick={() => snackCartIncrement(item)}>
                     <img src={plusImg} alt='Adicionar quantidade' />
                   </button>
                 </div>
@@ -42,7 +47,11 @@ export function TableDesktop() {
               <td>
                 <h5>{currencyFormat(item.subtotal)}</h5>
               </td>
-              <td>Deletar</td>
+              <td>
+                <button type='button' onClick={() => removeSnackFromCart(item)}>
+                  <FaTrashAlt />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
